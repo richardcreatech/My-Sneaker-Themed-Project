@@ -9,6 +9,7 @@ This is a preview of what i'v got in mind
 <div align="center">
   <img src="public/Sneaker-Themed-Designs/TV-1.png" width="200" style="border-radius: 16px;">
   <img src="public/Sneaker-Themed-Designs/TV-2.png" width="200" style="border-radius: 16px;">
-  <img src="public/Sneaker-Themed-Designs/TV-3.png" width="200" style="border-radius: 16px;">
-  <img src="public/Sneaker-Themed-Designs/TV-4.png" width="200" style="border-radius: 16px;">
+  <img src="public/Sneaker-Themed-Designs/TV-3.png" width="200" style="border-radius: 36px;">
+  <img src="public/Sneaker-Themed-Designs/TV-4
+  .png" width="200" style="border-radius: 16px;">
 </div>
