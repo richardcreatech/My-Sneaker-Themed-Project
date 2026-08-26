@@ -1,4 +1,4 @@
-export default function Yep() {
+export default function yep() {
   document.title = "Sneakers";
 
   console.log(`Welcome to the ${document.title} Project`);

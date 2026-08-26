@@ -1,0 +1,985 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-color: #888 transparent;
+  transition: all 0.2s linear;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Your scroller color */
+  border-radius: 4px; /* Round the scroller edges */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Hide scrollbar buttons in WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Keep your existing clean scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.bg-pattern {
+  position: fixed; /* not absolute — this is the key part */
+  inset: 0;
+  z-index: -1;
+  background-image: url("assets/patterns/sneaker-doodles.png");
+  background-repeat: repeat;
+  background-size: 480px; /* tile size — tune to your art */
+  opacity: 0.15; /* tune this — screenshot looks like ~10-20% */
+  pointer-events: none;
+}
+
+body {
+  background-color: black;
+}
+
+#home_hero_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 150px;
+}
+
+#home_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+
+#home_info h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+
+#home_info p {
+  margin: 20px 0 0;
+  color: #b3b3b3;
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+#home_btns {
+  margin-top: 28px;
+}
+
+.explore-btns {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 34px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+.explore-btns:hover {
+  background: #e8e8e8;
+}
+
+.explore-btns:active {
+  transform: scale(0.97);
+}
+
+#home-img-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 12px;
+}
+
+/* card: rounded corners, thin gradient accent bar along the top edge only */
+#gallery-frame {
+  position: relative;
+  width: 90vw;
+  height: min(60vh, 900px);
+  aspect-ratio: 1/ 1;
+  border-radius: 20px;
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+#gallery-frame:active {
+  cursor: grabbing;
+}
+
+#gallery-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 7px;
+  background: linear-gradient(90deg, #ff3d9a, #7c3aed);
+  z-index: 2;
+}
+
+.gallery-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: opacity, transform;
+  user-select: none;
+}
+
+/* pagination row of shoe icons standing in for dots */
+#gallery-pagination {
+  display: flex;
+  align-items: flex-end;
+  gap: 28px;
+}
+
+.shoe-icon {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+}
+
+.shoe-icon img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.shoe-icon:focus-visible {
+  outline: 2px solid #ff3d9a;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   Home_Header.css
+
+   No scroll math lives here anymore — this file just defines the RESTING
+   (pre-scroll) state. GSAP (in Home_Header.jsx) tweens width, height,
+   border-radius, background-color, border-color, transform and opacity
+   directly via refs as the user scrolls, so these are effectively the
+   "from" values of every tween.
+   ========================================================================== */
+
+#home_header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 20px 24px 0;
+  pointer-events: none; /* re-enabled on the interactive shell below */
+  will-change: transform;
+}
+
+a{
+  color: white;
+}
+
+#home_nav_shell {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  /* Resting width spans nearly the full header row — logo far left, nav
+     far right, like the reference's top state. GSAP animates this down
+     to a compact centered pill; because justify-content stays
+     space-between throughout, the logo and nav visually converge as the
+     shell narrows — no separate animation needed for that "merge". */
+  width: calc(100vw - 48px);
+  max-width: calc(100vw - 24px);
+  height: 52px;
+  padding: 0 10px;
+  border-radius: 18px;
+
+  background-color: rgba(10, 10, 10, 0);
+  border: 1px solid rgba(255, 255, 255, 0);
+  backdrop-filter: blur(0px);
+}
+
+/* ---------------------------------------------------------------------
+   Logo — its own small floating chip at rest; GSAP fades this background
+   out while the shell's background fades in.
+   --------------------------------------------------------------------- */
+#home_logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  text-decoration: none;
+
+  background-color: rgba(10, 10, 10, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+#home_logo img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ---------------------------------------------------------------------
+   Nav capsule — mirrors the logo's fade behavior on the other side.
+   --------------------------------------------------------------------- */
+#home_nav_shell nav {
+  flex-shrink: 0;
+}
+
+#home_nav_shell ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0 14px;
+  height: 40px;
+  border-radius: 999px;
+  gap: 14px;
+
+  background-color: rgba(10, 10, 10, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+#home_nav_shell li {
+  position: relative;
+}
+
+#home_nav_shell li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.2s ease-out;
+}
+
+#home_nav_shell li.active a {
+  color: #ff5a1f;
+}
+
+/* small active-state dot, matching the reference's underline indicator */
+#home_nav_shell li.active a::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ff5a1f;
+  transform: translateX(-50%);
+}
+
+.nav_icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* Labels start hidden/icon-only — GSAP's fromTo tween (staggered, with a
+   back.out overshoot ease) is what brings these in, so no CSS transition
+   is needed here; it would only fight with GSAP's own interpolation. */
+.nav_label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* ==========================================================================
+   Mobile — only static/layout concerns; GSAP's matchMedia branch in the
+   JS handles the animated target sizes for this breakpoint.
+   ========================================================================== */
+@media (max-width: 640px) {
+  #home_header {
+    padding: 14px 12px 0;
+  }
+
+  #home_nav_shell {
+    width: calc(100vw - 24px);
+    height: 46px;
+  }
+
+  #home_logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  #home_logo img {
+    width: 18px;
+    height: 18px;
+  }
+
+  #home_nav_shell ul {
+    gap: 10px;
+  }
+
+  .nav_icon {
+    font-size: 13px;
+  }
+
+  .nav_label {
+    font-size: 9px;
+  }
+}
+
+/* =========================================
+   QUICK VIEW
+========================================= */
+
+#quick_view_section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 120px 7vw;
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr) minmax(280px, 0.65fr);
+  align-items: center;
+  gap: 5vw;
+margin-top: 90px;
+  /* background: #090909; */
+  color: #f5f5f5;
+  overflow: hidden;
+}
+
+
+/* =========================================
+   THUMBNAILS
+========================================= */
+
+#quick_view_section #quick_view_thumbnails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  z-index: 2;
+}
+
+#quick_view_section #quick_view_thumbnails .quick-view-thumbnail {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  cursor: pointer;
+  overflow: hidden;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    opacity 0.35s ease,
+    background 0.35s ease;
+}
+
+#quick_view_section
+  #quick_view_thumbnails
+  .quick-view-thumbnail:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+#quick_view_section
+  #quick_view_thumbnails
+  .quick-view-thumbnail:not(.active) {
+  opacity: 0.5;
+}
+
+#quick_view_section
+  #quick_view_thumbnails
+  .quick-view-thumbnail.active {
+  opacity: 1;
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.08);
+}
+
+#quick_view_section
+  #quick_view_thumbnails
+  .quick-view-thumbnail
+  img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+
+/* =========================================
+   ACTIVE THUMBNAIL INDICATOR
+========================================= */
+
+#quick_view_section
+  #quick_view_thumbnails
+  .quick-view-thumbnail.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  width: 20px;
+  height: 2px;
+
+  background: #ffffff;
+  border-radius: 10px;
+
+  transform: translateX(-50%);
+}
+
+
+/* =========================================
+   MAIN IMAGE
+========================================= */
+
+#quick_view_section #quick_view_image_box {
+  position: relative;
+  width: 100%;
+  height: min(650px, 70vh);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.09) 0%,
+      rgba(255, 255, 255, 0.025) 38%,
+      transparent 70%
+    );
+
+  overflow: hidden;
+}
+
+
+/* subtle glow behind sneaker */
+
+#quick_view_section
+  #quick_view_image_box::before {
+  content: "";
+  position: absolute;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  filter: blur(70px);
+}
+
+
+/* Main sneaker */
+
+#quick_view_section #quick_view_image_box #current_img {
+  position: relative;
+  z-index: 1;
+
+  width: 200%;
+  height: 88%;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 30px 35px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+}
+
+#quick_view_section
+  #quick_view_image_box:hover
+  #current_img {
+  transform: scale(1.04) rotate(-2deg);
+}
+
+
+/* =========================================
+   TEXT / CONTENT
+========================================= */
+
+#quick_view_section #quick_view_expose {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: end;
+}
+
+#quick_view_section #quick_view_expose::before {
+  content: "QUICK VIEW";
+
+  display: block;
+  margin-bottom: 18px;
+
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  opacity: 0.45;
+}
+
+
+#quick_view_section #quick_view_expose h1 {
+  max-width: 520px;
+  margin: 0;
+text-align: right;
+  font-size: ;
+  line-height: 0.92;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+
+  text-transform: uppercase;
+}
+
+
+#quick_view_section #quick_view_expose p {
+  max-width: 420px;
+  margin: 28px 0 34px;
+text-align: right;
+
+  font-size: 15px;
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.55);
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+#quick_view_section
+  #quick_view_expose
+  button {
+  position: relative;
+
+  padding: 15px 24px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+
+  background: #ffffff;
+  color: #090909;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+#quick_view_section
+  #quick_view_expose
+  button:hover {
+  transform: translateY(-3px);
+  background: transparent;
+  color: #ffffff;
+}
+
+
+/* =========================================
+   DECORATIVE NUMBER
+========================================= */
+
+#quick_view_section::after {
+
+  position: absolute;
+  right: 7vw;
+  bottom: 50px;
+
+  font-size: 10px;
+  letter-spacing: 0.15em;
+
+  color: rgba(255, 255, 255, 0.3);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  #quick_view_section {
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 30px;
+    padding: 100px 5vw;
+  }
+
+  #quick_view_section #quick_view_expose {
+    grid-column: 2;
+  }
+
+  #quick_view_section #quick_view_image_box {
+    grid-column: 2;
+    height: 55vh;
+  }
+
+  #quick_view_section #quick_view_expose h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  #quick_view_section
+    #quick_view_thumbnails
+    .quick-view-thumbnail {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  #quick_view_section {
+    min-height: auto;
+    padding: 90px 20px 80px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 28px;
+  }
+
+  #quick_view_section #quick_view_thumbnails {
+    order: 1;
+
+    flex-direction: row;
+    justify-content: flex-start;
+
+    overflow-x: auto;
+    padding: 5px 4px 10px;
+  }
+
+  #quick_view_section
+    #quick_view_thumbnails
+    .quick-view-thumbnail {
+    flex: 0 0 58px;
+
+    width: 58px;
+    height: 58px;
+  }
+
+  #quick_view_section #quick_view_image_box {
+    order: 2;
+
+    width: 100%;
+    height: 48vh;
+
+    min-height: 300px;
+
+    border-radius: 20px;
+  }
+
+  #quick_view_section #quick_view_image_box #current_img {
+    width: 95%;
+    height: 95%;
+  }
+
+  #quick_view_section #quick_view_expose {
+    order: 3;
+  }
+
+  #quick_view_section #quick_view_expose h1 {
+    max-width: 100%;
+
+    font-size: clamp(2.5rem, 14vw, 4rem);
+    letter-spacing: -0.065em;
+  }
+
+  #quick_view_section #quick_view_expose p {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  #quick_view_section::after {
+    right: 20px;
+    bottom: 25px;
+  }
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+#site_footer {
+  width: 100%;
+  min-height: 70vh;
+
+  background: #ffffff;
+  color: #000000;
+
+  display: flex;
+  align-items: stretch;
+
+  overflow: hidden;
+}
+
+#site_footer #site_footer_inner {
+  width: 100%;
+  min-height: 70vh;
+
+  padding: 80px 7vw 35px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+#site_footer #footer_brand {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#site_footer #footer_brand h2 {
+  margin: 0;
+
+  font-size: clamp(4rem, 12vw, 11rem);
+  line-height: 0.8;
+  font-weight: 800;
+
+  letter-spacing: -0.08em;
+}
+
+#site_footer #footer_brand p {
+  margin: 25px 0 0;
+
+  max-width: 280px;
+
+  font-size: 14px;
+  line-height: 1.6;
+
+  color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================
+   LINKS
+========================================= */
+
+#site_footer #footer_links {
+  align-self: flex-end;
+
+  margin-top: 80px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+#site_footer #footer_links a {
+  position: relative;
+
+  color: #000000;
+  text-decoration: none;
+
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 500;
+
+  letter-spacing: -0.04em;
+
+  transition: opacity 0.3s ease;
+}
+
+
+/* underline animation */
+
+#site_footer #footer_links a::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+
+  width: 100%;
+  height: 2px;
+
+  background: #000000;
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#site_footer #footer_links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+#site_footer #footer_links:hover a:not(:hover) {
+  opacity: 0.25;
+}
+
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+#site_footer #footer_bottom {
+  padding-top: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#site_footer #footer_socials {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+#site_footer #footer_socials a {
+  color: #000000;
+  text-decoration: none;
+
+  transition: opacity 0.25s ease;
+}
+
+#site_footer #footer_socials a:hover {
+  opacity: 0.45;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  #site_footer #site_footer_inner {
+    padding: 70px 5vw 30px;
+  }
+
+  #site_footer #footer_links {
+    align-self: flex-start;
+    margin-top: 100px;
+  }
+
+  #site_footer #footer_brand h2 {
+    font-size: clamp(4rem, 16vw, 8rem);
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  #site_footer {
+    min-height: 80vh;
+  }
+
+  #site_footer #site_footer_inner {
+    min-height: 80vh;
+    padding: 55px 20px 25px;
+  }
+
+  #site_footer #footer_brand h2 {
+    font-size: 19vw;
+  }
+
+  #site_footer #footer_brand p {
+    font-size: 13px;
+  }
+
+  #site_footer #footer_links {
+    margin-top: 70px;
+    gap: 4px;
+  }
+
+  #site_footer #footer_links a {
+    font-size: 2rem;
+  }
+
+  #site_footer #footer_bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  #site_footer #footer_socials {
+    gap: 16px;
+  }
+}
