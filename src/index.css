@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@100..900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -54,12 +56,12 @@
   background-image: url("assets/patterns/sneaker-doodles.png");
   background-repeat: repeat;
   background-size: 480px; /* tile size — tune to your art */
-  opacity: 0.15; /* tune this — screenshot looks like ~10-20% */
+  opacity: 0.03; /* tune this — screenshot looks like ~10-20% */
   pointer-events: none;
 }
 
 body {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
 }
 
 #home_hero_section {
@@ -68,30 +70,34 @@ body {
   align-items: center;
   text-align: center;
   margin-top: 150px;
+  background: #000;
 }
 
 #home_info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 640px;
+  max-width: 1000px;
   margin-bottom: 40px;
 }
 
 #home_info h1 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
   margin: 0;
   color: #ffffff;
-  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-size: 7vw;
   font-weight: 800;
   letter-spacing: 0.5px;
   line-height: 1.1;
 }
 
 #home_info p {
+  font-family: "Courier New", Courier, monospace;
   margin: 20px 0 0;
   color: #b3b3b3;
   font-size: 17px;
-  line-height: 1.6;
   max-width: 560px;
 }
 
@@ -215,7 +221,7 @@ body {
   will-change: transform;
 }
 
-a{
+a {
   color: white;
 }
 
@@ -383,15 +389,16 @@ a{
   width: 100%;
   padding: 120px 7vw;
   display: grid;
+  font-family: "Courier New", Courier, monospace;
+
   grid-template-columns: 90px minmax(0, 1fr) minmax(280px, 0.65fr);
   align-items: center;
   gap: 5vw;
-margin-top: 90px;
+  margin-top: 90px;
   /* background: #090909; */
   color: #f5f5f5;
   overflow: hidden;
 }
-
 
 /* =========================================
    THUMBNAILS
@@ -424,46 +431,34 @@ margin-top: 90px;
     background 0.35s ease;
 }
 
-#quick_view_section
-  #quick_view_thumbnails
-  .quick-view-thumbnail:hover {
+#quick_view_section #quick_view_thumbnails .quick-view-thumbnail:hover {
   transform: translateY(-4px);
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-#quick_view_section
-  #quick_view_thumbnails
-  .quick-view-thumbnail:not(.active) {
+#quick_view_section #quick_view_thumbnails .quick-view-thumbnail:not(.active) {
   opacity: 0.5;
 }
 
-#quick_view_section
-  #quick_view_thumbnails
-  .quick-view-thumbnail.active {
+#quick_view_section #quick_view_thumbnails .quick-view-thumbnail.active {
   opacity: 1;
   border-color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
   transform: scale(1.08);
 }
 
-#quick_view_section
-  #quick_view_thumbnails
-  .quick-view-thumbnail
-  img {
+#quick_view_section #quick_view_thumbnails .quick-view-thumbnail img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
 }
 
-
 /* =========================================
    ACTIVE THUMBNAIL INDICATOR
 ========================================= */
 
-#quick_view_section
-  #quick_view_thumbnails
-  .quick-view-thumbnail.active::after {
+#quick_view_section #quick_view_thumbnails .quick-view-thumbnail.active::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -476,7 +471,6 @@ margin-top: 90px;
 
   transform: translateX(-50%);
 }
-
 
 /* =========================================
    MAIN IMAGE
@@ -492,22 +486,19 @@ margin-top: 90px;
   justify-content: center;
 
   border-radius: 28px;
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.09) 0%,
-      rgba(255, 255, 255, 0.025) 38%,
-      transparent 70%
-    );
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(255, 255, 255, 0.025) 38%,
+    transparent 70%
+  );
 
   overflow: hidden;
 }
 
-
 /* subtle glow behind sneaker */
 
-#quick_view_section
-  #quick_view_image_box::before {
+#quick_view_section #quick_view_image_box::before {
   content: "";
   position: absolute;
   width: 55%;
@@ -518,7 +509,6 @@ margin-top: 90px;
 
   filter: blur(70px);
 }
-
 
 /* Main sneaker */
 
@@ -531,8 +521,7 @@ margin-top: 90px;
 
   object-fit: contain;
 
-  filter:
-    drop-shadow(0 30px 35px rgba(0, 0, 0, 0.55))
+  filter: drop-shadow(0 30px 35px rgba(0, 0, 0, 0.55))
     drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
 
   transition:
@@ -540,12 +529,9 @@ margin-top: 90px;
     opacity 0.35s ease;
 }
 
-#quick_view_section
-  #quick_view_image_box:hover
-  #current_img {
+#quick_view_section #quick_view_image_box:hover #current_img {
   transform: scale(1.04) rotate(-2deg);
 }
-
 
 /* =========================================
    TEXT / CONTENT
@@ -575,12 +561,11 @@ margin-top: 90px;
   opacity: 0.45;
 }
 
-
 #quick_view_section #quick_view_expose h1 {
   max-width: 520px;
   margin: 0;
-text-align: right;
-  font-size: ;
+  text-align: right;
+  font-size:;
   line-height: 0.92;
   font-weight: 700;
   letter-spacing: -0.055em;
@@ -588,11 +573,10 @@ text-align: right;
   text-transform: uppercase;
 }
 
-
 #quick_view_section #quick_view_expose p {
   max-width: 420px;
   margin: 28px 0 34px;
-text-align: right;
+  text-align: right;
 
   font-size: 15px;
   line-height: 1.7;
@@ -600,14 +584,11 @@ text-align: right;
   color: rgba(255, 255, 255, 0.55);
 }
 
-
 /* =========================================
    BUTTON
 ========================================= */
 
-#quick_view_section
-  #quick_view_expose
-  button {
+#quick_view_section #quick_view_expose button {
   position: relative;
 
   padding: 15px 24px;
@@ -633,21 +614,17 @@ text-align: right;
     color 0.3s ease;
 }
 
-#quick_view_section
-  #quick_view_expose
-  button:hover {
+#quick_view_section #quick_view_expose button:hover {
   transform: translateY(-3px);
   background: transparent;
   color: #ffffff;
 }
-
 
 /* =========================================
    DECORATIVE NUMBER
 ========================================= */
 
 #quick_view_section::after {
-
   position: absolute;
   right: 7vw;
   bottom: 50px;
@@ -657,7 +634,6 @@ text-align: right;
 
   color: rgba(255, 255, 255, 0.3);
 }
-
 
 /* =========================================
    TABLET
@@ -683,14 +659,11 @@ text-align: right;
     font-size: clamp(2.5rem, 8vw, 4rem);
   }
 
-  #quick_view_section
-    #quick_view_thumbnails
-    .quick-view-thumbnail {
+  #quick_view_section #quick_view_thumbnails .quick-view-thumbnail {
     width: 60px;
     height: 60px;
   }
 }
-
 
 /* =========================================
    MOBILE
@@ -718,9 +691,7 @@ text-align: right;
     padding: 5px 4px 10px;
   }
 
-  #quick_view_section
-    #quick_view_thumbnails
-    .quick-view-thumbnail {
+  #quick_view_section #quick_view_thumbnails .quick-view-thumbnail {
     flex: 0 0 58px;
 
     width: 58px;
@@ -775,6 +746,7 @@ text-align: right;
 
   background: #ffffff;
   color: #000000;
+  font-family: "Courier New", Courier, monospace;
 
   display: flex;
   align-items: stretch;
@@ -792,7 +764,6 @@ text-align: right;
   flex-direction: column;
   justify-content: space-between;
 }
-
 
 /* =========================================
    BRAND
@@ -825,7 +796,6 @@ text-align: right;
   color: rgba(0, 0, 0, 0.5);
 }
 
-
 /* =========================================
    LINKS
 ========================================= */
@@ -854,7 +824,6 @@ text-align: right;
 
   transition: opacity 0.3s ease;
 }
-
 
 /* underline animation */
 
@@ -885,7 +854,6 @@ text-align: right;
   opacity: 0.25;
 }
 
-
 /* =========================================
    BOTTOM
 ========================================= */
@@ -898,6 +866,7 @@ text-align: right;
   justify-content: space-between;
 
   border-top: 1px solid rgba(0, 0, 0, 0.15);
+  font-family: "Courier New", Courier, monospace;
 
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -921,7 +890,6 @@ text-align: right;
   opacity: 0.45;
 }
 
-
 /* =========================================
    TABLET
 ========================================= */
@@ -940,7 +908,6 @@ text-align: right;
     font-size: clamp(4rem, 16vw, 8rem);
   }
 }
-
 
 /* =========================================
    MOBILE
@@ -981,5 +948,665 @@ text-align: right;
 
   #site_footer #footer_socials {
     gap: 16px;
+  }
+}
+
+#youtube_video_box {
+  width: min(1400px, 92%);
+  margin: 0 auto;
+  padding: 120px 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* =========================
+   VIDEO
+========================= */
+
+#youtube_video_box iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+
+  display: block;
+
+  border: none;
+  border-radius: 28px;
+
+  background: #111;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.18),
+    0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   CAPTIONS
+========================= */
+
+#video_captions {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(320px, 1fr);
+
+  gap: 80px;
+  align-items: start;
+}
+
+/* Heading */
+
+#video_captions h1 {
+  margin: 0;
+
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+
+  font-weight: 600;
+
+  color: #dbdbdb;
+}
+
+/* Paragraph */
+
+#video_captions p {
+  margin: 8px 0 0;
+
+  max-width: 520px;
+
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+
+  color: #666;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+  #youtube_video_box {
+    width: min(94%, 760px);
+    padding: 90px 0;
+    gap: 40px;
+  }
+
+  #video_captions {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  #video_captions h1 {
+    max-width: 700px;
+  }
+
+  #video_captions p {
+    max-width: 700px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 640px) {
+  #youtube_video_box {
+    width: calc(100% - 32px);
+    padding: 70px 0;
+    gap: 30px;
+  }
+
+  #youtube_video_box iframe {
+    aspect-ratio: 16 / 10;
+    border-radius: 18px;
+
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+  }
+
+  #video_captions {
+    gap: 18px;
+  }
+
+  #video_captions h1 {
+    font-size: clamp(2rem, 9vw, 3rem);
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+  }
+
+  #video_captions p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+}
+
+#history_of_sneakers {
+  position: relative;
+  margin: 15px;
+  padding: 140px 0;
+}
+
+#history_intro {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 80px;
+}
+
+.history_eyebrow {
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: #777;
+}
+
+#history_intro h1 {
+  margin: 0;
+
+text-align: left;
+  font-size: clamp(3rem, 7vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+
+  color: #ffffff;
+}
+
+.history_description {
+  margin-top: 30px;
+  text-align: left;
+  font-size: 1.05rem;
+  line-height: 1.7;
+
+  color: #666;
+}
+
+/* =========================
+   LEGEND GRID
+========================= */
+
+#legend_grid {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+flex-wrap: wrap;
+  gap: clamp(24px, 5vw, 80px);
+
+  padding: 100px 0;
+
+  overflow: visible;
+}
+
+.legend_card {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: clamp(90px, 10vw, 150px);
+  aspect-ratio: 1;
+
+  /* border-radius: 10%; */
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  background: #111;
+
+  border: 2px solid rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease;
+}
+
+.legend_card:nth-child(1) {
+  transform: translateY(30px);
+}
+
+.legend_card:nth-child(2) {
+  transform: translateY(-25px);
+}
+
+.legend_card:nth-child(3) {
+  transform: translateY(10px);
+}
+
+.legend_card:nth-child(4) {
+  transform: translateY(-45px);
+}
+
+.legend_card:nth-child(5) {
+  transform: translateY(20px);
+}
+
+.legend_card:nth-child(6) {
+  transform: translateY(-15px);
+}
+
+.legend_card img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.legend_card:hover {
+  transform: translateY(-10px) scale(1.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
+
+.legend_card {
+  --offset: 0px;
+
+  transform: translateY(var(--offset));
+
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: clamp(90px, 10vw, 150px);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  background: #111;
+}
+
+.legend_card:nth-child(1) {
+  --offset: 30px;
+}
+
+.legend_card:nth-child(2) {
+  --offset: -25px;
+}
+
+.legend_card:nth-child(3) {
+  --offset: 10px;
+}
+
+.legend_card:nth-child(4) {
+  --offset: -45px;
+}
+
+.legend_card:nth-child(5) {
+  --offset: 20px;
+}
+
+.legend_card:nth-child(6) {
+  --offset: -15px;
+}
+
+.legend_card:hover {
+  transform: translateY(calc(var(--offset) - 10px)) scale(1.12);
+
+  z-index: 5;
+}
+
+.legend_card:hover img {
+  transform: scale(1.06);
+}
+
+.legend_card::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent 55%);
+}
+
+.legend_card_name {
+  position: absolute;
+
+  left: 20px;
+  bottom: 20px;
+
+  z-index: 2;
+
+  color: white;
+
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* =========================
+   TOOLTIP
+========================= */
+
+#legend_tooltip {
+  position: fixed;
+
+  z-index: 9999;
+
+  width: min(380px, calc(100vw - 30px));
+
+  padding: 24px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+
+  background: rgba(15, 15, 15, 0.96);
+
+  color: white;
+
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(20px);
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+#legend_tooltip .tooltip_role {
+  margin: 0 0 8px;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: #888;
+}
+
+#legend_tooltip h2 {
+  margin: 0;
+
+  font-size: 1.8rem;
+  line-height: 1;
+
+  letter-spacing: -0.04em;
+}
+
+#legend_tooltip > p {
+  margin: 18px 0 22px;
+
+  font-size: 0.92rem;
+  line-height: 1.6;
+
+  color: #bbb;
+}
+
+.tooltip_buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.tooltip_buttons button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+
+  background: transparent;
+  color: white;
+
+  font: inherit;
+  font-size: 0.8rem;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.tooltip_buttons button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+  #history_of_sneakers {
+    width: calc(100% - 32px);
+    padding: 90px 0;
+  }
+
+  #legend_grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .legend_card {
+    height: 220px;
+  }
+
+  .legend_card:nth-child(2),
+  .legend_card:nth-child(4),
+  .legend_card:nth-child(6) {
+    transform: none;
+  }
+
+  #legend_tooltip {
+    position: fixed;
+
+    left: 50% !important;
+    top: auto !important;
+    bottom: 20px;
+
+    transform: translateX(-50%) !important;
+  }
+}
+
+@media (max-width: 520px) {
+  #legend_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .legend_card {
+    height: 260px;
+  }
+
+  #history_intro h1 {
+    font-size: 3.5rem;
+  }
+}
+
+#shoe_rain_section {
+  position: relative;
+
+  min-height: 850px;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #0a0a0a;
+
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#shoe_rain {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+#shoe_template {
+  display: none;
+}
+
+.shoe_drop {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  display: block;
+
+  max-width: none;
+
+  height: auto;
+
+  object-fit: contain;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+#shoe_rain_content {
+  position: relative;
+
+  z-index: 5;
+
+  width: min(700px, 90%);
+
+  text-align: center;
+
+  pointer-events: none;
+}
+
+.shoe_rain_eyebrow {
+  margin: 0 0 20px;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.45);
+}
+
+#shoe_rain_content h2 {
+  margin: 0;
+
+  font-size: clamp(4rem, 11vw, 10rem);
+
+  line-height: 0.85;
+
+  letter-spacing: -0.07em;
+
+  font-weight: 600;
+}
+
+#shoe_rain_content > p:not(.shoe_rain_eyebrow) {
+  width: min(500px, 100%);
+
+  margin: 30px auto;
+
+  font-size: 1rem;
+
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.shoe_rain_button {
+  pointer-events: auto;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 13px 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #fff;
+
+  font: inherit;
+
+  font-size: 0.85rem;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.shoe_rain_button:hover {
+  background: rgba(255, 255, 255, 0.12);
+
+  border-color: rgba(255, 255, 255, 0.35);
+
+  transform: translateY(-2px);
+}
+
+.shoe_rain_button span {
+  font-size: 0.7rem;
+}
+
+.sound_indicator {
+  width: min(250px, 70%);
+
+  height: 2px;
+
+  margin: 35px auto 0;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.sound_indicator span {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  transform-origin: left center;
+
+  background: #fff;
+
+  transition: transform 0.08s linear;
+}
+
+@media (max-width: 700px) {
+  #shoe_rain_section {
+    min-height: 700px;
+  }
+
+  #shoe_rain_content h2 {
+    font-size: clamp(4rem, 18vw, 7rem);
+  }
+
+  .shoe_rain_button {
+    padding: 12px 18px;
   }
 }

@@ -28,45 +28,65 @@ function Home_Header() {
   const labelRefs = useRef([]);
   const location = useLocation();
 
-  useEffect(() => {
-    const mm = gsap.matchMedia();
+useEffect(() => {
+  const mm = gsap.matchMedia();
 
-    mm.add({ isMobile: "(max-width: 640px)" }, (context) => {
-      const { isMobile } = context.conditions;
+  mm.add(
+    {
+      isMobile: "(max-width: 640px)",
+      isDesktop: "(min-width: 641px)",
+    },
+    (context) => {
+      const { isMobile, isDesktop } = context.conditions;
 
-      // ---- TWEAK: collapsed -> expanded target sizes ----
+      if (!headerRef.current || !shellRef.current) return;
+
       const shellTarget = isMobile
         ? {
-            width: () => Math.min(window.innerWidth - 24, 260),
+            width: Math.min(window.innerWidth - 24, 260),
             height: 56,
             borderRadius: 26,
           }
         : {
-            width: () => Math.min(window.innerWidth - 24, 380),
+            width: Math.min(window.innerWidth - 48, 380),
             height: 66,
             borderRadius: 30,
           };
 
-      // ---- TWEAK: how far down the header travels ----
-      const travelY = () => window.innerHeight - (isMobile ? 110 : 140);
+      const travelY = isMobile
+        ? () => window.innerHeight - 110
+        : () => window.innerHeight - 140;
 
       const tl = gsap.timeline({
-        defaults: { ease: "none" },
+        defaults: {
+          ease: "none",
+        },
+
         scrollTrigger: {
           trigger: document.documentElement,
           start: "top top",
           end: `+=${SCROLL_DISTANCE}`,
-          scrub: 0.4, // small lag so it glides rather than snapping 1:1 to scroll
+          scrub: 0.4,
           invalidateOnRefresh: true,
+
+          markers: false,
         },
       });
 
-      // Header moves toward the bottom across the whole scroll range.
-      tl.to(headerRef.current, { y: travelY }, 0);
+      /*
+       * HEADER MOVEMENT
+       */
+      tl.to(
+        headerRef.current,
+        {
+          y: travelY,
+        },
+        0
+      );
 
-      // 20% -> 60%: capsule stretches/grows. Logo + nav each fade their own
-      // background out as the shell's background fades in — that hand-off
-      // is what reads as them "merging" into one pill.
+      /*
+       * SHELL EXPANDS
+       */
       tl.to(
         shellRef.current,
         {
@@ -77,46 +97,73 @@ function Home_Header() {
           ease: "power2.out",
         },
         0.2
-      )
-        .to(
-          logoRef.current,
-          {
-            backgroundColor: "rgba(10,10,10,0)",
-            borderColor: "rgba(255,255,255,0)",
-            duration: 0.4,
-          },
-          0.2
-        )
-        .to(
-          navListRef.current,
-          {
-            backgroundColor: "rgba(10,10,10,0)",
-            borderColor: "rgba(255,255,255,0)",
-            duration: 0.4,
-          },
-          0.2
-        );
+      );
 
-      // ~62% -> 92%: labels reveal one by one with a small overshoot.
-      // back.out(1.7) produces the bounce — raise the 1.7 for a bigger
-      // overshoot, lower it to flatten it out.
+      /*
+       * LOGO MERGES INTO SHELL
+       */
+      tl.to(
+        logoRef.current,
+        {
+          backgroundColor: "rgba(10,10,10,0)",
+          borderColor: "rgba(255,255,255,0)",
+          duration: 0.4,
+        },
+        0.2
+      );
+
+      /*
+       * NAV MERGES INTO SHELL
+       */
+      tl.to(
+        navListRef.current,
+        {
+          backgroundColor: "rgba(10,10,10,0)",
+          borderColor: "rgba(255,255,255,0)",
+          duration: 0.4,
+        },
+        0.2
+      );
+
+      /*
+       * LABEL REVEAL
+       */
       tl.fromTo(
-        labelRefs.current,
-        { opacity: 0, y: 14 },
+        labelRefs.current.filter(Boolean),
+        {
+          opacity: 0,
+          y: 14,
+        },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.08, // gap between Home -> Explore -> Games
+          stagger: 0.08,
           duration: 0.3,
           ease: "back.out(1.7)",
         },
         0.62
       );
-    });
 
-    return () => mm.revert();
-  }, []);
+      /*
+       * Helpful while debugging desktop
+       */
+      console.log({
+        isMobile,
+        isDesktop,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
 
+      return () => {
+        tl.kill();
+      };
+    }
+  );
+
+  return () => {
+    mm.revert();
+  };
+}, []);
   return (
     <header id="home_header" ref={headerRef}>
       <div id="home_nav_shell" ref={shellRef}>
