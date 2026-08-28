@@ -2055,8 +2055,8 @@ a {
   gap: clamp(4.5rem, 9vw, 7rem);
   padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 6vw, 5rem);
 /* overflow-x: auto; */
-  width: 100%;               /* ADD THIS */
-  margin: 39%;
+  width: 150%;               /* ADD THIS */
+  margin: 19%;
 flex-direction: row;
   overflow-x: auto;
 }
@@ -2073,7 +2073,7 @@ flex-direction: row;
   display: flex;
   align-items: center;
   gap: clamp(2rem, 4vw, 3.5rem);
-  max-width: fit-content;
+  max-width: auto;
   margin: 0 auto;
   padding: clamp(1.5rem, 3vw, 2.75rem);
   background: var(--lj-card-bg);

@@ -17,7 +17,7 @@ const SCROLL_DISTANCE = 550;
 const NAV_ITEMS = [
   { to: "/", icon: faHome, label: "Home" },
   { to: "/explore", icon: faCoffee, label: "Explore" },
-  { to: "/games", icon: faGamepad, label: "Games" },
+  // { to: "/games", icon: faGamepad, label: "Games" },
 ];
 
 function Home_Header() {
