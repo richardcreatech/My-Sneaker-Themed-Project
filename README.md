@@ -1,4 +1,4 @@
-# Sneakers Store — Backend
+# Sneakers Store - Backend
 
 Backend API for the Sneakers Store e-commerce application.
 
