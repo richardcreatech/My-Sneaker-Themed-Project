@@ -88,7 +88,20 @@ function Explore() {
       >
         <section className="a_journey">
           <div className="a_journey">
-            <img src="" alt="" />
+            <img src="https://i.pinimg.com/1200x/39/1e/fc/391efcfb7e94a34ffaf3d572e79cd2aa.jpg" alt="" />
+          </div>
+          <div>
+            <h2>A Mini Bold Heading</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+              sit fuga doloribus est deserunt itaque!
+            </p>
+            <button className="read_more">Read More</button>
+          </div>
+        </section>
+        <section className="a_journey">
+          <div className="a_journey">
+            <img src="https://i.pinimg.com/736x/ac/f3/23/acf3233963a6a342f6868c9001b44c48.jpg" alt="" />
           </div>
           <div>
             <h2>A Mini Bold Heading</h2>
@@ -112,45 +125,7 @@ function Explore() {
             <button className="read_more">Read More</button>
           </div>
         </section>
-        <section className="a_journey">
-          <div className="a_journey">
-            <img src="" alt="" />
-          </div>
-          <div>
-            <h2>A Mini Bold Heading</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-              sit fuga doloribus est deserunt itaque!
-            </p>
-            <button className="read_more">Read More</button>
-          </div>
-        </section>
-        <section className="a_journey">
-          <div className="a_journey">
-            <img src="" alt="" />
-          </div>
-          <div>
-            <h2>A Mini Bold Heading</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-              sit fuga doloribus est deserunt itaque!
-            </p>
-            <button className="read_more">Read More</button>
-          </div>
-        </section>
-        <section className="a_journey">
-          <div className="a_journey">
-            <img src="" alt="" />
-          </div>
-          <div>
-            <h2>A Mini Bold Heading</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-              sit fuga doloribus est deserunt itaque!
-            </p>
-            <button className="read_more">Read More</button>
-          </div>
-        </section>
+       
       </section>
     </section>
   );
