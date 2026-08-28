@@ -59,7 +59,7 @@ function Explore() {
           </div>
           <div className="my_photo_booth_img">
             <img
-              src={`https://i.pinimg.com/736x/48/58/e9/4858e9a444db5ad1d44f4bcc74a5484f.jpg`}
+              src={`https://i.pinimg.com/1200x/d0/c3/28/d0c328fe842bce74b160a21c325978af.jpg`}
               alt=""
             />
             <span>
@@ -69,7 +69,7 @@ function Explore() {
           </div>
           <div className="my_photo_booth_img">
             <img
-              src={`https://i.pinimg.com/736x/48/58/e9/4858e9a444db5ad1d44f4bcc74a5484f.jpg`}
+              src={`https://i.pinimg.com/1200x/ac/6c/b0/ac6cb01ffddff921c1520cd76c381a30.jpg`}
               alt=""
             />
             <span>
