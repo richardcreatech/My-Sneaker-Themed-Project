@@ -2055,7 +2055,7 @@ a {
   gap: clamp(4.5rem, 9vw, 7rem);
   padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 6vw, 5rem);
 /* overflow-x: auto; */
-  width: 200%;               /* ADD THIS */
+  width: 90%;               /* ADD THIS */
 flex-direction: row;
   overflow-x: auto;
 }
