@@ -28,11 +28,9 @@ function Explore() {
     <section id="explore_section">
       <section id="layer_1">
         <section id="part_1">
-          <h1>SNEAKERS ARE IN STYLE</h1>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi,
-            pariatur?
-          </p>
+         <h1>SHOES OFF, OR SHOES ON?</h1>
+
+<p>We like our style fast and our looks lethal. Wrap your feet in something unforgettable.</p>
           <button id="explore_me_btn">Explore Platform</button>
         </section>
 
