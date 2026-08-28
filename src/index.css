@@ -1092,12 +1092,11 @@ a {
 }
 
 #history_intro {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 80px;
 }
 
 .history_eyebrow {
-
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -1109,7 +1108,7 @@ a {
 #history_intro h1 {
   margin: 0;
 
-text-align: left;
+  text-align: left;
   font-size: clamp(3rem, 7vw, 7rem);
   line-height: 0.9;
   letter-spacing: -0.06em;
@@ -1136,7 +1135,7 @@ text-align: left;
   display: flex;
   align-items: center;
   justify-content: center;
-flex-wrap: wrap;
+  flex-wrap: wrap;
   gap: clamp(24px, 5vw, 80px);
 
   padding: 100px 0;
@@ -1475,9 +1474,7 @@ flex-wrap: wrap;
 
   user-select: none;
 
-  will-change:
-    transform,
-    opacity;
+  will-change: transform, opacity;
 }
 
 #shoe_rain_content {
@@ -1608,5 +1605,644 @@ flex-wrap: wrap;
 
   .shoe_rain_button {
     padding: 12px 18px;
+  }
+}
+#explore_section {
+  /* ---- design tokens, scoped to this section ---- */
+  --eb-paper: #ede6d6; /* warm parchment background            */
+  --eb-ink: #221d17; /* near-black ink for headings           */
+  --eb-muted: #6b6357; /* secondary/body text                   */
+  --eb-card: #fffdf7; /* physical print paper                  */
+  --eb-accent: #a73b2e; /* darkroom red — button / CTA            */
+  --eb-tape: #c6a153; /* washi-tape gold accent                */
+  --eb-shadow: rgba(30, 22, 14, 0.32);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 6vw, 5rem);
+  background: var(--eb-paper);
+  overflow-x: hidden; /* keeps the scattered photos from ever causing page scroll */
+}
+
+#layer_1 {
+  font-family: "Space Grotesk"; /* fixed typo: was "Space Grotek" */
+  display: flex;
+  /* FIX: a 12% gap plus 42% + 56% children = 110% of the row's width,
+     which pushed #part_2 (the photo collage) off-screen — and since
+     #explore_section has overflow-x: hidden, it got clipped instead of
+     scrolled, which is why the images looked like they'd vanished on
+     mobile. A clamp()-based gap keeps the two columns from ever
+     summing to more than 100%. */
+  gap: clamp(1.5rem, 5vw, 4rem);
+    font-family: "Space Grotesk";
+  display: flex;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  width: 100%;  
+}
+
+/* FIX: stack #layer_1's two columns on mobile so #part_2 gets full
+   width to lay its percentage-positioned photos out in, instead of
+   being squeezed into a cramped row and clipped. */
+@media (max-width: 768px) {
+  #layer_1 {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+}
+
+/* ==========================================================================
+   LEFT SIDE — clean editorial copy block
+   ========================================================================== */
+
+#part_1 {
+  flex: 0 0 42%;
+  max-width: 42%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  z-index: 2;
+}
+
+#part_1 h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: clamp(2.1rem, 3.6vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: var(--eb-ink);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+#part_1 p {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--eb-muted);
+  max-width: 36ch;
+  margin: 0;
+}
+
+/* Physical, pressed-paper button */
+#explore_me_btn {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--eb-card);
+  background: var(--eb-accent);
+  border: none;
+  padding: 0.95rem 2.15rem;
+  border-radius: 3px 9px 3px 9px; /* slightly imperfect corners */
+  box-shadow: 4px 4px 0 var(--eb-ink);
+  cursor: pointer;
+  margin-top: 0.75rem;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+#explore_me_btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--eb-ink);
+}
+
+#explore_me_btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--eb-ink);
+}
+
+#explore_me_btn:focus-visible {
+  outline: 2px solid var(--eb-ink);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   RIGHT SIDE — scattered photo collage
+   ========================================================================== */
+
+#part_2 {
+  position: relative;
+  flex: 0 0 56%;
+  max-width: 56%;
+  aspect-ratio: 1 / 0.92;
+  min-height: 380px;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  #part_2 {
+    flex-basis: 100%;
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 1 / 1.05;
+    min-height: 340px;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Each photo is an absolutely-positioned "print" inside #part_2.
+   Position, size, rotation and stacking are set per-card below via
+   nth-child, using a --rot custom property so hover can ease the
+   rotation back toward flat without losing each card's identity. */
+
+.my_photo_booth_img {
+  position: absolute;
+  width: 44%;
+  background: var(--eb-card);
+  padding: 0.55rem 0.55rem 0;
+  border-radius: 2px 4px 3px 5px; /* uneven, hand-cut corners */
+  box-shadow:
+    0 10px 22px -8px var(--eb-shadow),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+  transform: rotate(var(--rot, 0deg));
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s ease;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.my_photo_booth_img img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 1px;
+  filter: saturate(1.05) contrast(1.02);
+  pointer-events: none;
+}
+
+/* faint paper grain, sits above the image, below nothing */
+.my_photo_booth_img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(0, 0, 0, 0.03) 0, transparent 45%),
+    radial-gradient(circle at 82% 68%, rgba(0, 0, 0, 0.022) 0, transparent 40%),
+    radial-gradient(circle at 45% 88%, rgba(0, 0, 0, 0.018) 0, transparent 35%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.my_photo_booth_img span {
+  display: block;
+  padding: 0.55rem 0.2rem 0.9rem;
+  text-align: center;
+}
+
+.my_photo_booth_img span h1 {
+  font-family: "Caveat", cursive;
+  font-weight: 700;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  color: var(--eb-ink);
+  margin: 0;
+}
+
+.my_photo_booth_img span p {
+  font-family: "Caveat", cursive;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--eb-muted);
+  margin: 0.1rem 0 0;
+}
+
+/* ---- per-card placement, size, rotation, stacking ---- */
+
+.my_photo_booth_img:nth-child(1) {
+  --rot: -8deg;
+  top: 2%;
+  left: -2%;
+  width: 46%;
+  z-index: 1;
+}
+
+.my_photo_booth_img:nth-child(2) {
+  --rot: 4deg;
+  top: -4%;
+  left: 42%;
+  width: 40%;
+  z-index: 2;
+}
+
+.my_photo_booth_img:nth-child(3) {
+  --rot: -4deg;
+  top: 46%;
+  left: 2%;
+  width: 42%;
+  z-index: 3;
+}
+
+.my_photo_booth_img:nth-child(4) {
+  --rot: 9deg;
+  top: 38%;
+  left: 46%;
+  width: 46%;
+  z-index: 4;
+}
+
+/* a small strip of "tape" on two of the prints — the collage's one
+   deliberate signature detail, suggesting a hand actually pinned these down */
+.my_photo_booth_img:nth-child(2)::before,
+.my_photo_booth_img:nth-child(4)::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 68px;
+  height: 22px;
+  background: linear-gradient(
+    135deg,
+    rgba(198, 161, 83, 0.88),
+    rgba(198, 161, 83, 0.55)
+  );
+  transform: translateX(-50%) rotate(-4deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  opacity: 0.9;
+}
+
+/* ---- hover: "picking the photo up off the table" ---- */
+
+.my_photo_booth_img:hover {
+  z-index: 20;
+  box-shadow:
+    0 22px 38px -10px var(--eb-shadow),
+    0 6px 14px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px) rotate(calc(var(--rot) * 0.3)) scale(1.08);
+}
+
+/* ==========================================================================
+   RESPONSIVE — #explore_section / #part_1 / #part_2 / photos
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  #explore_section {
+    gap: 2.5rem;
+    padding: 4rem 2rem;
+  }
+
+  #part_2 {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  #explore_section {
+    padding: 3.5rem 1.25rem;
+    gap: 2.5rem;
+  }
+
+  #part_1 {
+    flex-basis: 100%;
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  #part_1 p {
+    max-width: 42ch;
+  }
+
+  .my_photo_booth_img {
+    transform: rotate(calc(var(--rot) * 0.55));
+  }
+
+  .my_photo_booth_img:hover {
+    transform: translateY(-6px) rotate(calc(var(--rot) * 0.2)) scale(1.05);
+  }
+}
+
+@media (max-width: 480px) {
+  #part_2 {
+    aspect-ratio: 1 / 1.2;
+  }
+
+  .my_photo_booth_img span h1 {
+    font-size: 1.15rem;
+  }
+
+  .my_photo_booth_img span p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .my_photo_booth_img,
+  #explore_me_btn {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   #layer_2 — "Journeys" section
+   Scoped entirely to #layer_2 — nothing outside it is touched.
+
+   This does NOT introduce a new font or a new color language. Typography
+   uses `inherit` so it automatically picks up whatever type your site
+   already sets at the body/root level. The only new colors are the ones
+   already visible in your existing design (the pink→purple→blue gradient
+   on your image cards, the near-black navbar, the orange nav/logo accent) —
+   they're reused here as the backing-layer accents so this section reads
+   as part of the same collection, not a separate design system.
+   ========================================================================== */
+
+#layer_2 {
+  /* ---- tokens pulled from the existing site (see screenshot) ---- */
+  --lj-ink: #0A0A0A;          /* heading black, matches nav/logo black   */
+  --lj-muted: #6B6B6B;        /* body copy gray                          */
+  --lj-border: #E1E1E1;       /* light pill/card border                  */
+  --lj-card-bg: #FFFFFF;
+
+  --lj-orange: #FF5722;       /* nav "HOME" active + logo sparkle accent */
+  --lj-pink: #FF3E9A;         /* gradient rim, top-left                  */
+  --lj-purple: #8B5CF6;       /* gradient rim, middle                    */
+  --lj-blue: #33C1FF;         /* gradient rim, right                     */
+  --lj-black-paper: #0D0D0D;  /* matches the navbar's near-black         */
+
+  position: relative;
+  display: flex;
+  gap: clamp(4.5rem, 9vw, 7rem);
+  padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 6vw, 5rem);
+/* overflow-x: auto; */
+  width: 200%;               /* ADD THIS */
+flex-direction: row;
+  overflow-x: auto;
+}
+
+/* ==========================================================================
+   MAIN CARD — the outer <section className="a_journey">
+   This element itself is the foreground "poster." The colored backing
+   papers are its ::before/::after, positioned behind and offset.
+   ========================================================================== */
+
+#layer_2 > section.a_journey {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  max-width: fit-content;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+  background: var(--lj-card-bg);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 22px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* alternate direction: odd = image left, even = image right */
+#layer_2 > section.a_journey:nth-of-type(even) {
+  flex-direction: row-reverse;
+}
+
+/* colored backing papers, shared base */
+#layer_2 > section.a_journey::before,
+#layer_2 > section.a_journey::after {
+  content: "";
+  position: absolute;
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+#layer_2 > section.a_journey::before {
+  inset: -14px;
+  z-index: -1;
+}
+
+#layer_2 > section.a_journey::after {
+  inset: -22px;
+  z-index: -2;
+}
+
+/* ---- per-journey backing color, offset and rotation ---- */
+
+#layer_2 > section.a_journey:nth-of-type(1)::before {
+  background: var(--lj-orange);
+  transform: translate(10px, 12px) rotate(2deg);
+}
+#layer_2 > section.a_journey:nth-of-type(1)::after {
+  background: var(--lj-black-paper);
+  transform: translate(-8px, 18px) rotate(-2deg);
+}
+
+#layer_2 > section.a_journey:nth-of-type(2)::before {
+  background: var(--lj-black-paper);
+  transform: translate(-12px, 10px) rotate(-2deg);
+}
+#layer_2 > section.a_journey:nth-of-type(2)::after {
+  background: var(--lj-purple);
+  transform: translate(10px, 17px) rotate(3deg);
+}
+
+#layer_2 > section.a_journey:nth-of-type(3)::before {
+  background: var(--lj-blue);
+  transform: translate(9px, -10px) rotate(-3deg);
+}
+#layer_2 > section.a_journey:nth-of-type(3)::after {
+  background: var(--lj-black-paper);
+  transform: translate(-11px, 14px) rotate(2deg);
+}
+
+#layer_2 > section.a_journey:nth-of-type(4)::before {
+  background: var(--lj-black-paper);
+  transform: translate(-10px, -8px) rotate(3deg);
+}
+#layer_2 > section.a_journey:nth-of-type(4)::after {
+  background: var(--lj-orange);
+  transform: translate(12px, 15px) rotate(-3deg);
+}
+
+#layer_2 > section.a_journey:nth-of-type(5)::before {
+  background: var(--lj-purple);
+  transform: translate(11px, 9px) rotate(2deg);
+}
+#layer_2 > section.a_journey:nth-of-type(5)::after {
+  background: var(--lj-black-paper);
+  transform: translate(-9px, -13px) rotate(-2deg);
+}
+
+/* ==========================================================================
+   IMAGE — the inner <div className="a_journey"> (tag-qualified so it never
+   collides with the outer <section className="a_journey"> above)
+   ========================================================================== */
+
+#layer_2 > section.a_journey > div.a_journey {
+  flex: 0 0 52%;
+  max-width: 52%;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--lj-pink), var(--lj-purple), var(--lj-blue));
+}
+
+#layer_2 > section.a_journey > div.a_journey img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  background: #f2f2f2; /* visible placeholder tone while src is empty */
+}
+
+/* ==========================================================================
+   CONTENT — the plain <div> holding h2 / p / button
+   ========================================================================== */
+
+#layer_2 > section.a_journey > div:not(.a_journey) {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+#layer_2 h2 {
+  font-family: inherit;
+  font-weight: 800;
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--lj-ink);
+  margin: 0;
+}
+
+#layer_2 p {
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--lj-muted);
+  max-width: 42ch;
+  margin: 0;
+}
+
+/* ==========================================================================
+   BUTTON — .read_more, same pill language as your existing "Explore
+   Platform" button, with a tactile pressed-paper feel added
+   ========================================================================== */
+
+.read_more {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--lj-ink);
+  background: var(--lj-card-bg);
+  border: 1.5px solid var(--lj-border);
+  border-radius: 999px;
+  padding: 0.65rem 1.6rem;
+  margin-top: 0.4rem;
+  cursor: pointer;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.read_more:hover {
+  transform: translateY(-2px);
+  border-color: #b8b8b8;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
+}
+
+.read_more:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+.read_more:focus-visible {
+  outline: 2px solid var(--lj-ink);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  #layer_2 {
+    gap: clamp(3.5rem, 8vw, 5rem);
+  }
+
+  #layer_2 > section.a_journey {
+    gap: 1.75rem;
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+
+  #layer_2 > section.a_journey::before,
+  #layer_2 > section.a_journey::after {
+    border-radius: 16px;
+  }
+
+  #layer_2 > section.a_journey::before {
+    inset: -10px;
+  }
+
+  #layer_2 > section.a_journey::after {
+    inset: -16px;
+  }
+}
+
+@media (max-width: 700px) {
+  #layer_2 {
+    gap: 3.5rem;
+    padding: 2.5rem 1.25rem;
+  }
+
+  /* stack image over content; image always on top regardless of
+     journey direction, but each journey keeps its own rotation/color
+     so the collection still feels varied rather than identical */
+  #layer_2 > section.a_journey,
+  #layer_2 > section.a_journey:nth-of-type(even) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.25rem;
+  }
+
+  #layer_2 > section.a_journey > div.a_journey {
+    flex-basis: auto;
+    max-width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  #layer_2 > section.a_journey > div:not(.a_journey) {
+    align-items: flex-start;
+  }
+
+  /* smaller, tighter backing offsets so nothing bleeds past the viewport */
+  #layer_2 > section.a_journey::before {
+    inset: -8px;
+    transform: translate(6px, 8px) rotate(1.5deg);
+  }
+
+  #layer_2 > section.a_journey::after {
+    inset: -13px;
+    transform: translate(-6px, 11px) rotate(-1.5deg);
+  }
+
+  /* keep a little per-journey variation even with the simplified offsets */
+  #layer_2 > section.a_journey:nth-of-type(2)::before,
+  #layer_2 > section.a_journey:nth-of-type(4)::before {
+    transform: translate(-6px, 7px) rotate(-1.5deg);
+  }
+  #layer_2 > section.a_journey:nth-of-type(2)::after,
+  #layer_2 > section.a_journey:nth-of-type(4)::after {
+    transform: translate(6px, 10px) rotate(1.5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .read_more {
+    transition: none;
   }
 }
