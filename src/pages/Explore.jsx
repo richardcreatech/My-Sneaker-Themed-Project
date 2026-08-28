@@ -49,7 +49,7 @@ function Explore() {
           </div>
           <div className="my_photo_booth_img">
             <img
-              src={`https://i.pinimg.com/1200x/99/38/5b/99385b74b9a0b645a224cee2a80d8ef5.jpg`}
+              src={`https://i.pinimg.com/736x/0f/08/f7/0f08f768d6f78d6645ea3d1f5197d475.jpg`}
               alt=""
             />
             <span>
@@ -59,7 +59,7 @@ function Explore() {
           </div>
           <div className="my_photo_booth_img">
             <img
-              src={`https://i.pinimg.com/1200x/99/38/5b/99385b74b9a0b645a224cee2a80d8ef5.jpg`}
+              src={`https://i.pinimg.com/736x/48/58/e9/4858e9a444db5ad1d44f4bcc74a5484f.jpg`}
               alt=""
             />
             <span>
@@ -69,7 +69,7 @@ function Explore() {
           </div>
           <div className="my_photo_booth_img">
             <img
-              src={`https://i.pinimg.com/1200x/99/38/5b/99385b74b9a0b645a224cee2a80d8ef5.jpg`}
+              src={`https://i.pinimg.com/736x/48/58/e9/4858e9a444db5ad1d44f4bcc74a5484f.jpg`}
               alt=""
             />
             <span>

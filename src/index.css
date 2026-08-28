@@ -49,6 +49,86 @@
   background-color: #555;
 }
 
+.gesture-controller {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.gesture-controller__button {
+  border: 1px solid currentColor;
+  background: white;
+  color: black;
+
+  padding: 10px 16px;
+
+  border-radius: 999px;
+
+  font: inherit;
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.gesture-controller__button:hover {
+  transform: translateY(-2px);
+}
+
+.gesture-controller__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+
+  font-size: 12px;
+}
+
+.gesture-controller__dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #67ff8a;
+}
+
+.gesture-controller__error {
+  padding: 8px 12px;
+
+  border-radius: 8px;
+
+  background: #111;
+  color: white;
+
+  font-size: 12px;
+}
+
+.gesture-controller__camera {
+  position: fixed;
+
+  width: 1px;
+  height: 1px;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
 .bg-pattern {
   position: fixed; /* not absolute — this is the key part */
   inset: 0;
