@@ -9,7 +9,7 @@ function Login() {
     const [message, setMessage] = useState("");
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target;console.log(value)
 
         setFormData((prev) => ({
             ...prev,
