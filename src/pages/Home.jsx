@@ -2,10 +2,10 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import HomeImgGallery from "./Homeimggallery";
 import QuickView from "./Quickview";
-import SneakerStory from "./SneakerStory";
 import Footer from "./Footer";
 import History from "./History";
 import ShoeRain from "./ShoeRain";
+import { NavLink } from "react-router";
 
 function Home() {
   const headingRef = useRef(null);
@@ -57,9 +57,9 @@ function Home() {
           have become more than just everyday essentials.
         </p>
         <div id="home_btns">
-          <button ref={buttonRef} className="explore-btns">
+          <NavLink to={"/auth"} ref={buttonRef} className="explore-btns">
             Explore Me
-          </button>
+          </NavLink>
         </div>
       <div ref={galleryRef}>
         <HomeImgGallery />

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faGamepad, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faCoffee,  faHome } from "@fortawesome/free-solid-svg-icons";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import my_logo from "../../public/logo/my_logo.png";
