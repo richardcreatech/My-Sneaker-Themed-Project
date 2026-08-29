@@ -54,7 +54,7 @@ function Home() {
         <h1 ref={headingRef}>SNEAKERS ARE IN STYLE</h1>
         <p ref={paragraphRef}>
           From casual streetwear to effortlessly polished looks, sneakers
-          have become more than just everyday essentials.
+          have become more than just everyday essentialz.
         </p>
         <div id="home_btns">
           <NavLink to={"/auth"} ref={buttonRef} className="explore-btns">
