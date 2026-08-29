@@ -61,6 +61,7 @@ function Home() {
             Explore Me
           </NavLink>
         </div>
+          <canvas />
       <div ref={galleryRef}>
         <HomeImgGallery />
       </div>
