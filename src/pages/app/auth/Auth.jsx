@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Signup from "../../../components/SignUp";
 import Login from "../../../components/Login";
-import shoe from "../../../assets/shoe_feature.png"
-import my_logo from "../../../assets/my_logo.png"
+import shoe from "../../../assets/shoe_feature.png";
+import my_logo from "../../../assets/my_logo.png";
 
 function Auth() {
   const [mode, setMode] = useState("signup");
@@ -14,8 +14,8 @@ function Auth() {
       <div className="auth__container">
         <div className="auth__content">
           <header className="auth__header">
-                      <div className="auth__brand">
-                        <img src={my_logo} width={50} alt="" />
+            <div className="auth__brand">
+              <img src={my_logo} width={50} alt="" />
             </div>
 
             <div className="auth__switch">
@@ -49,8 +49,12 @@ function Auth() {
           </main>
         </div>
 
-              <aside className="auth__visual">
-                <img className="auth__visual-image" src={shoe} alt="Featured sneaker" />  
+        <aside className="auth__visual">
+          <img
+            className="auth__visual-image"
+            src={shoe}
+            alt="Featured sneaker"
+          />
           <p className="auth__visual-caption">Every pair, verified</p>
         </aside>
       </div>

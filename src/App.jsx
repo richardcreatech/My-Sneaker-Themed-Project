@@ -2,8 +2,7 @@ import { Routes, Route } from "react-router"
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import Explore from "./pages/Explore"
-import Auth from "./pages/app/auth/auth"
-
+import Auth from "./pages/app/auth/Auth"
 function App() {
   return (
     <Routes>
