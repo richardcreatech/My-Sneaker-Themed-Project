@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -6,31 +7,54 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
-const dummyProduct = {
-  id: 1,
-  name: "Fall Limited Edition Sneakers",
-  category: "Sneaker Company",
-  description:
-    "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.",
-  price: 125.0,
-  oldPrice: 250.0,
-  discount: 50,
-  images: [
-    "https://picsum.photos/seed/sneaker1/500/500",
-    "https://picsum.photos/seed/sneaker2/500/500",
-    "https://picsum.photos/seed/sneaker3/500/500",
-    "https://picsum.photos/seed/sneaker4/500/500",
-  ],
-};
-
-// function CurrentProduct({ product }) {
 function CurrentProduct() {
+  const { id } = useParams();
+
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   const [quantity, setQuantity] = useState(0);
   const [activeImage, setActiveImage] = useState(0);
-  let product = dummyProduct;
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        setError("");
+
+        const response = await fetch(
+          `http://localhost:5000/products/${id}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch product");
+        }
+
+        const data = await response.json();
+        setProduct(data);
+        setActiveImage(0); // reset in case user navigates between products
+      } catch (err) {
+        console.error(err);
+        setError("Could not load product.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  if (loading) {
+    return <main className="current_product">Loading product...</main>;
+  }
+
+  if (error) {
+    return <main className="current_product">{error}</main>;
+  }
 
   if (!product) {
-    return <main className="current_product">Loading product...</main>;
+    return <main className="current_product">Product not found.</main>;
   }
 
   const {

@@ -22,7 +22,7 @@ function App() {
       {/* Route to the Main Application page */}
       <Route path="/main" element={<AppLayout />} >
       <Route path="" element={<Products />} />
-      <Route path="product" element={<CurrentProduct />} />
+      <Route path="product/:id" element={<CurrentProduct />} />
       
       </Route>
     </Routes>
