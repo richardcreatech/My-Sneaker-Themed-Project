@@ -2328,7 +2328,7 @@ flex-direction: row;
   --kraft: #13100b;
   --kraft-dark: #050504;
   --ink: #ffffff;
-  --chalk: #0c0c0a;
+  --chalk: #000000;
   --ember: #e8542c;
   --grey: #514e47;
 
@@ -2539,15 +2539,7 @@ flex-direction: row;
 
 .auth__visual {
   position: relative;
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(27, 27, 24, 0.04) 0px,
-      rgba(27, 27, 24, 0.04) 1px,
-      transparent 1px,
-      transparent 14px
-    ),
-    var(--kraft);
+  background: rgb(0, 0, 11);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2559,7 +2551,7 @@ flex-direction: row;
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 15%, rgba(255,255,255,0.16), transparent 55%);
+  background: radial-gradient(circle at 20% 15%, rgba(225, 67, 4, 0.16), transparent 55%);
   pointer-events: none;
 }
 

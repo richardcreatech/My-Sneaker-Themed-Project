@@ -3,6 +3,7 @@ import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import Explore from "./pages/Explore"
 import Auth from "./pages/app/auth/Auth"
+import AppLayout from "./pages/app/main/AppLayout"
 import Products from "./pages/app/main/Products"
 function App() {
   return (
@@ -18,7 +19,10 @@ function App() {
       <Route path="/auth" element={<Auth />} />
       
       {/* Route to the Main Application page */}
-        <Route path="/main" element={<Products />} />
+      <Route path="/main" element={<AppLayout />} >
+      <Route path="/main" element={<Products />} />
+      
+      </Route>
     </Routes>
   )
 }

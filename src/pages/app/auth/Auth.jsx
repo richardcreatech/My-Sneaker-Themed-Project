@@ -50,11 +50,7 @@ function Auth() {
         </div>
 
         <aside className="auth__visual">
-          <img
-            className="auth__visual-image"
-            src={shoe}
-            alt="Featured sneaker"
-          />
+
           <p className="auth__visual-caption">Every pair, verified</p>
         </aside>
       </div>
