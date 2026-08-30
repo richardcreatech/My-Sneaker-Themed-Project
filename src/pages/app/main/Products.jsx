@@ -1,4 +1,7 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import logo from "../../../assets/my_logo.png"
+import { faCoffee, faPen, faPersonFalling } from "@fortawesome/free-solid-svg-icons";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -40,16 +43,18 @@ function Products() {
     <section className="products-page">
       {/* HEADER */}
       <div className="products-header">
+
+         <div className="brand-logo">
+          <img src={logo} width={20} alt="" />
+        </div>
         <div className="products-categories">
-          <button className="active">All items</button>
-          <button>Sneakers</button>
-          <button>Jordan</button>
-          <button>Nike</button>
+          <button className="active"><FontAwesomeIcon icon={faCoffee} /></button>
+          <button><FontAwesomeIcon icon={faPen} /></button>
+          {/* <button><FontAwesomeIcon icon={Fav} /></button> */}
+          <button><FontAwesomeIcon icon={faPersonFalling} /></button>
         </div>
 
-        <div className="brand-logo">
-          <span>NIKE</span>
-        </div>
+       
       </div>
 
       {/* PRODUCT GRID */}

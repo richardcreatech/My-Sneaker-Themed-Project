@@ -2702,9 +2702,10 @@ flex-direction: row;
 }
 
 .products-page {
+  display: flex;
   width: 100%;
+  justify-content: start;
   min-height: 100vh;
-  padding: 28px;
   background: #080808;
   color: #ffffff;
   box-sizing: border-box;
@@ -2714,14 +2715,20 @@ flex-direction: row;
 
 .products-header {
   display: flex;
-  align-items: center;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  flex-direction: column;
+  left: 0;
+ gap: 70vh;
   justify-content: space-between;
-  margin-bottom: 28px;
+  /* padding: 2px; */
+padding:  9px;
 }
 
 .products-categories {
+  flex-direction: column;
   display: flex;
-  align-items: center;
   gap: 30px;
 }
 
@@ -2744,12 +2751,10 @@ flex-direction: row;
 /* BRAND LOGO */
 
 .brand-logo {
-  min-width: 90px;
-  height: 38px;
-  padding: 0 16px;
+  height: 45px;
+  width: 50px;
   border: 1px solid #343434;
-  border-radius: 999px;
-
+  border-radius: 9px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2766,6 +2771,7 @@ flex-direction: row;
 /* GRID */
 
 .products-grid {
+  margin: 22px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
@@ -2783,7 +2789,6 @@ flex-direction: row;
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 18px;
 
   display: flex;
   align-items: center;
@@ -2796,7 +2801,7 @@ flex-direction: row;
   height: 82%;
   object-fit: contain;
   display: block;
-border-radius: 2rem;
+border-radius: 0.2rem;
   transition: transform 0.35s ease;
 }
 
