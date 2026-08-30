@@ -5,6 +5,7 @@ import Explore from "./pages/Explore"
 import Auth from "./pages/app/auth/Auth"
 import AppLayout from "./pages/app/main/AppLayout"
 import Products from "./pages/app/main/Products"
+import CurrentProduct from "./pages/app/main/CurrentProduct"
 function App() {
   return (
     <Routes>
@@ -20,7 +21,8 @@ function App() {
       
       {/* Route to the Main Application page */}
       <Route path="/main" element={<AppLayout />} >
-      <Route path="/main" element={<Products />} />
+      <Route path="" element={<Products />} />
+      <Route path="product" element={<CurrentProduct />} />
       
       </Route>
     </Routes>

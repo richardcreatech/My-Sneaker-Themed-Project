@@ -49,7 +49,6 @@ function Auth() {
         </div>
 
         <aside className="auth__visual">
-
           <p className="auth__visual-caption">Every pair, verified</p>
         </aside>
       </div>
