@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Signup from "../../../components/SignUp";
 import Login from "../../../components/Login";
-import shoe from "../../../assets/shoe_feature.png";
 import my_logo from "../../../assets/my_logo.png";
 
 function Auth() {
