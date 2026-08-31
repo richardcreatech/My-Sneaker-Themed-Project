@@ -6,6 +6,7 @@ import Auth from "./pages/app/auth/Auth"
 import AppLayout from "./pages/app/main/AppLayout"
 import Products from "./pages/app/main/Products"
 import CurrentProduct from "./pages/app/main/CurrentProduct"
+import Edit from "./pages/app/main/Edit"
 function App() {
   return (
     <Routes>
@@ -23,6 +24,7 @@ function App() {
       <Route path="/main" element={<AppLayout />} >
       <Route path="" element={<Products />} />
       <Route path="product/:id" element={<CurrentProduct />} />
+      <Route path="edit_me" element={<Edit />} />
       
       </Route>
     </Routes>

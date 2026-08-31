@@ -41,10 +41,12 @@ function Login() {
 
       console.log("Login response:", data);
 
-        setMessage(data.message);
-        navigate("/main")
-      // We'll deal with storing the token
-      // and navigating to the products page next.
+      // Store the token so authenticate() on the server can verify
+      // future requests via the Authorization header.
+      localStorage.setItem("token", data.token);
+
+      setMessage(data.message);
+      navigate("/main");
     } catch (error) {
       console.error(error);
       setMessage("Unable to connect to server");
