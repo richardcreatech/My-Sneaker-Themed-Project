@@ -22,9 +22,6 @@ function Products_Header() {
         <button onClick={() => navigate("/main/edit_me")}>
           <FontAwesomeIcon icon={faPen} />
         </button>
-        <button>
-          <FontAwesomeIcon icon={faPersonFalling} />
-        </button>
       </div>
     </div>
   );
