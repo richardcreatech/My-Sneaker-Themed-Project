@@ -6,6 +6,7 @@
   box-sizing: border-box;
   scrollbar-color: #888 transparent;
   transition: all 0.2s linear;
+  overflow-x: hidden;
 }
 ::-webkit-scrollbar {
   width: 8px;
