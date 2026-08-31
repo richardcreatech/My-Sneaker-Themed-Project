@@ -3079,3 +3079,7 @@ border-radius: 0.2rem;
     font-size: 26px;
   }
 }
+
+.legend_focus{
+  color: #ff0077;
+}

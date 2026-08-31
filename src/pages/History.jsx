@@ -139,7 +139,7 @@ function History() {
           THE PEOPLE BEHIND THE CULTURE
         </p>
 
-        <h1>Meet the legends who changed sneakers.</h1>
+        <h1>Meet the <span className="legend_focus">legends</span> who changed sneakers.</h1>
 
         <p className="history_description">
           Sneakers became more than something we wear because of the people
