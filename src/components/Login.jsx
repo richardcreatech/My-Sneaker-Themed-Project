@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { API_BASE_URL } from "../config/api";
+import { API_BASE_URL, apiFetch } from "../config/api";
 
 function Login() {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${API_BASE_URL}/login`, {
+      const response = await apiFetch(`${API_BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,12 +39,6 @@ function Login() {
         setMessage(data.message || "Login failed");
         return;
       }
-
-      console.log("Login response:", data);
-
-      // Store the token so authenticate() on the server can verify
-      // future requests via the Authorization header.
-      localStorage.setItem("token", data.token);
 
       setMessage(data.message);
       navigate("/main");

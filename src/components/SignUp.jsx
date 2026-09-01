@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { API_BASE_URL } from "../config/api";
+import { API_BASE_URL, apiFetch } from "../config/api";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ function Signup() {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${API_BASE_URL}/signup`, {
+      const response = await apiFetch(`${API_BASE_URL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,12 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { API_BASE_URL } from "../../../config/api";
+import { API_BASE_URL, apiFetch } from "../../../config/api";
 
 const MAX_IMAGES = 6;
-
-function getToken() {
-  // Adjust this to however your app actually stores the auth token.
-  return localStorage.getItem("token");
-}
 
 function CollectionModal({ onClose, onCreated }) {
   const [name, setName] = useState("");
@@ -33,7 +28,7 @@ function CollectionModal({ onClose, onCreated }) {
 
     async function loadCategories() {
       try {
-        const res = await fetch(`${API_BASE_URL}/categories`);
+        const res = await apiFetch(`${API_BASE_URL}/categories`);
         if (!res.ok) throw new Error("Failed to load categories");
         const data = await res.json();
         if (!cancelled) setCategories(data.categories ?? data);
@@ -104,11 +99,10 @@ function CollectionModal({ onClose, onCreated }) {
     setFormError(null);
 
     try {
-      const res = await fetch(`${API_BASE_URL}/categories`, {
+      const res = await apiFetch(`${API_BASE_URL}/categories`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${getToken()}`,
         },
         body: JSON.stringify({
           name: newCategoryName.trim(),
@@ -157,11 +151,8 @@ function CollectionModal({ onClose, onCreated }) {
       body.append("category_id", categoryId);
       images.forEach((img) => body.append("images", img.file));
 
-      const res = await fetch(`${API_BASE_URL}/products`, {
+      const res = await apiFetch(`${API_BASE_URL}/products`, {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
         body,
       });
 

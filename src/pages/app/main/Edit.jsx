@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import CollectionModal from "./CollectionModal";
-import { API_BASE_URL } from "../../../config/api";
+import { API_BASE_URL, apiFetch } from "../../../config/api";
 
 function Edit() {
   const [collections, setCollections] = useState([]);
@@ -13,7 +13,7 @@ function Edit() {
     setLoadError(null);
 
     try {
-      const res = await fetch(`${API_BASE_URL}/getproducts`);
+      const res = await apiFetch(`${API_BASE_URL}/getproducts`);
       if (!res.ok) throw new Error("Request failed");
 
       const data = await res.json();

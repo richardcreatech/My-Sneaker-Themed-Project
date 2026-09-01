@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { API_BASE_URL } from "../../../config/api";
+import { API_BASE_URL, apiFetch } from "../../../config/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -24,7 +24,7 @@ function CurrentProduct() {
         setLoading(true);
         setError("");
 
-        const response = await fetch(`${API_BASE_URL}/products/${id}`);
+        const response = await apiFetch(`${API_BASE_URL}/products/${id}`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch product");
