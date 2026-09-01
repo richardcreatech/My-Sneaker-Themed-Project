@@ -52,13 +52,13 @@ function Products() {
             </div>
 
             {/* DETAILS */}
-            <div className="product-details">
+            {/* <div className="product-details">
               <span className="product-category">{product.category}</span>
 
               <h2 className="product-name">{product.name}</h2>
 
            
-            </div>
+            </div> */}
           </article>
         </Link>
       ))}
