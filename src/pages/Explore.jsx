@@ -7,30 +7,38 @@ function Explore() {
   const startScroll = useRef(0);
 
   const handlePointerDown = (e) => {
+    if (!layer2Ref.current) return;
+
     isDown.current = true;
-    startX.current = e.pageX;
+    startX.current = e.clientX;
     startScroll.current = layer2Ref.current.scrollLeft;
     layer2Ref.current.classList.add("dragging");
+    layer2Ref.current.setPointerCapture?.(e.pointerId);
   };
 
   const stopDragging = () => {
     isDown.current = false;
+    if (!layer2Ref.current) return;
     layer2Ref.current.classList.remove("dragging");
   };
 
   const handlePointerMove = (e) => {
-    if (!isDown.current) return;
+    if (!isDown.current || !layer2Ref.current) return;
     e.preventDefault();
-    const walked = e.pageX - startX.current;
+
+    const walked = e.clientX - startX.current;
     layer2Ref.current.scrollLeft = startScroll.current - walked;
   };
   return (
     <section id="explore_section">
       <section id="layer_1">
         <section id="part_1">
-         <h1>SHOES OFF, OR SHOES ON?</h1>
+          <h1>SHOES OFF, OR SHOES ON?</h1>
 
-<p>We like our style fast and our looks lethal. Wrap your feet in something unforgettable.</p>
+          <p>
+            We like our style fast and our looks lethal. Wrap your feet in
+            something unforgettable.
+          </p>
           <button id="explore_me_btn">Explore Platform</button>
         </section>
 
@@ -79,16 +87,20 @@ function Explore() {
       </section>
 
       <section
-        onMouseDown={handlePointerDown}
-        onMouseMove={handlePointerMove}
-        onMouseUp={stopDragging}
-        onMouseLeave={stopDragging}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={stopDragging}
+        onPointerLeave={stopDragging}
+        onPointerCancel={stopDragging}
         ref={layer2Ref}
         id="layer_2"
       >
         <section className="a_journey">
           <div className="a_journey">
-            <img src="https://i.pinimg.com/1200x/39/1e/fc/391efcfb7e94a34ffaf3d572e79cd2aa.jpg" alt="" />
+            <img
+              src="https://i.pinimg.com/1200x/39/1e/fc/391efcfb7e94a34ffaf3d572e79cd2aa.jpg"
+              alt=""
+            />
           </div>
           <div>
             <h2>A Mini Bold Heading</h2>
@@ -101,7 +113,10 @@ function Explore() {
         </section>
         <section className="a_journey">
           <div className="a_journey">
-            <img src="https://i.pinimg.com/736x/ac/f3/23/acf3233963a6a342f6868c9001b44c48.jpg" alt="" />
+            <img
+              src="https://i.pinimg.com/736x/ac/f3/23/acf3233963a6a342f6868c9001b44c48.jpg"
+              alt=""
+            />
           </div>
           <div>
             <h2>A Mini Bold Heading</h2>
@@ -114,7 +129,10 @@ function Explore() {
         </section>
         <section className="a_journey">
           <div className="a_journey">
-            <img src="" alt="" />
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80"
+              alt="Sneaker close-up"
+            />
           </div>
           <div>
             <h2>A Mini Bold Heading</h2>
@@ -125,7 +143,6 @@ function Explore() {
             <button className="read_more">Read More</button>
           </div>
         </section>
-       
       </section>
     </section>
   );

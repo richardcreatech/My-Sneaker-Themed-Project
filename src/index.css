@@ -2418,42 +2418,47 @@ a {
   --lj-black-paper: #0d0d0d;
 
   position: relative;
-  display: flex;
-  gap: clamp(4.5rem, 9vw, 7rem);
-  padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 6vw, 5rem);
-  width: 150%;
-  margin: 19%;
-  flex-direction: row;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(300px, 42vw);
+  align-items: stretch;
+  gap: clamp(2rem, 4vw, 4rem);
+  width: 100%;
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 3vw, 2.5rem);
+  margin: 0;
   overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.28) transparent;
+  cursor: grab;
 }
 
-/* ==========================================================================
-   MAIN CARD — the outer <section className="a_journey">
-   This element itself is the foreground "poster." The colored backing
-   papers are its ::before/::after, positioned behind and offset.
-   ========================================================================== */
+#layer_2.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
 
 #layer_2 > section.a_journey {
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: clamp(2rem, 4vw, 3.5rem);
-  max-width: auto;
-  margin: 0 auto;
-  padding: clamp(1.5rem, 3vw, 2.75rem);
+  gap: clamp(1.25rem, 2vw, 2.5rem);
+  width: min(760px, 72vw);
+  min-width: 0;
+  padding: clamp(1.25rem, 2.75vw, 2.2rem);
   background: var(--lj-card-bg);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 22px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  scroll-snap-align: start;
 }
 
-/* alternate direction: odd = image left, even = image right */
 #layer_2 > section.a_journey:nth-of-type(even) {
   flex-direction: row-reverse;
 }
 
-/* colored backing papers, shared base */
 #layer_2 > section.a_journey::before,
 #layer_2 > section.a_journey::after {
   content: "";
@@ -2471,8 +2476,6 @@ a {
   inset: -22px;
   z-index: -2;
 }
-
-/* ---- per-journey backing color, offset and rotation ---- */
 
 #layer_2 > section.a_journey:nth-of-type(1)::before {
   background: var(--lj-orange);
@@ -2501,29 +2504,6 @@ a {
   transform: translate(-11px, 14px) rotate(2deg);
 }
 
-#layer_2 > section.a_journey:nth-of-type(4)::before {
-  background: var(--lj-black-paper);
-  transform: translate(-10px, -8px) rotate(3deg);
-}
-#layer_2 > section.a_journey:nth-of-type(4)::after {
-  background: var(--lj-orange);
-  transform: translate(12px, 15px) rotate(-3deg);
-}
-
-#layer_2 > section.a_journey:nth-of-type(5)::before {
-  background: var(--lj-purple);
-  transform: translate(11px, 9px) rotate(2deg);
-}
-#layer_2 > section.a_journey:nth-of-type(5)::after {
-  background: var(--lj-black-paper);
-  transform: translate(-9px, -13px) rotate(-2deg);
-}
-
-/* ==========================================================================
-   IMAGE — the inner <div className="a_journey"> (tag-qualified so it never
-   collides with the outer <section className="a_journey"> above)
-   ========================================================================== */
-
 #layer_2 > section.a_journey > div.a_journey {
   flex: 0 0 52%;
   max-width: 52%;
@@ -2544,12 +2524,8 @@ a {
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
-  background: #f2f2f2; /* visible placeholder tone while src is empty */
+  background: #f2f2f2;
 }
-
-/* ==========================================================================
-   CONTENT — the plain <div> holding h2 / p / button
-   ========================================================================== */
 
 #layer_2 > section.a_journey > div:not(.a_journey) {
   flex: 1 1 auto;
@@ -2579,11 +2555,6 @@ a {
   max-width: 42ch;
   margin: 0;
 }
-
-/* ==========================================================================
-   BUTTON — .read_more, same pill language as your existing "Explore
-   Platform" button, with a tactile pressed-paper feel added
-   ========================================================================== */
 
 .read_more {
   font-family: inherit;
@@ -2619,17 +2590,15 @@ a {
   outline-offset: 3px;
 }
 
-/* ==========================================================================
-   RESPONSIVE
-   ========================================================================== */
-
 @media (max-width: 1024px) {
   #layer_2 {
-    gap: clamp(3.5rem, 8vw, 5rem);
+    grid-auto-columns: minmax(280px, 68vw);
+    gap: clamp(1.5rem, 3vw, 3rem);
   }
 
   #layer_2 > section.a_journey {
-    gap: 1.75rem;
+    width: min(680px, 75vw);
+    gap: 1.5rem;
     padding: 1.5rem;
     border-radius: 18px;
   }
@@ -2650,23 +2619,23 @@ a {
 
 @media (max-width: 700px) {
   #layer_2 {
-    gap: 3.5rem;
-    padding: 2.5rem 1.25rem;
+    grid-auto-columns: minmax(270px, 82vw);
+    gap: 2rem;
+    padding: 2rem 1rem;
   }
 
-  /* stack image over content; image always on top regardless of
-     journey direction, but each journey keeps its own rotation/color
-     so the collection still feels varied rather than identical */
   #layer_2 > section.a_journey,
   #layer_2 > section.a_journey:nth-of-type(even) {
     flex-direction: column;
     align-items: stretch;
-    padding: 1.25rem;
+    width: min(100%, 420px);
+    padding: 1.1rem;
   }
 
   #layer_2 > section.a_journey > div.a_journey {
     flex-basis: auto;
     max-width: 100%;
+    width: 100%;
     aspect-ratio: 4 / 3;
   }
 
@@ -2674,7 +2643,6 @@ a {
     align-items: flex-start;
   }
 
-  /* smaller, tighter backing offsets so nothing bleeds past the viewport */
   #layer_2 > section.a_journey::before {
     inset: -8px;
     transform: translate(6px, 8px) rotate(1.5deg);
@@ -2685,7 +2653,6 @@ a {
     transform: translate(-6px, 11px) rotate(-1.5deg);
   }
 
-  /* keep a little per-journey variation even with the simplified offsets */
   #layer_2 > section.a_journey:nth-of-type(2)::before,
   #layer_2 > section.a_journey:nth-of-type(4)::before {
     transform: translate(-6px, 7px) rotate(-1.5deg);
