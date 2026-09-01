@@ -57,9 +57,7 @@ function Products() {
 
               <h2 className="product-name">{product.name}</h2>
 
-              <span className="product-price">
-                ${Number(product.price).toFixed(2)}
-              </span>
+           
             </div>
           </article>
         </Link>

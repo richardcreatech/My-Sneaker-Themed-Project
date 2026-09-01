@@ -104,9 +104,7 @@ function CurrentProduct() {
         <p className="current-product-description">{description}</p>
 
         <div className="current-product-pricing">
-          <span className="current-product-price">
-            ${Number(price).toFixed(2)}
-          </span>
+         
           {discount && (
             <span className="current-product-discount">{discount}%</span>
           )}
@@ -117,7 +115,7 @@ function CurrentProduct() {
           )}
         </div>
 
-        <div className="current-product-actions">
+        {/* <div className="current-product-actions">
           <div className="current-product-quantity">
             <button onClick={handleDecrease}>
               <FontAwesomeIcon icon={faMinus} />
@@ -132,7 +130,7 @@ function CurrentProduct() {
             <FontAwesomeIcon icon={faCartShopping} />
             Add to cart
           </button>
-        </div>
+        </div> */}
       </div>
     </main>
   );

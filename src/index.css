@@ -3319,7 +3319,7 @@ a {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #8a8a8a;
+  color: #ffffff;
 }
 
 .current-product-name {
@@ -3327,7 +3327,7 @@ a {
   font-weight: 800;
   line-height: 1.2;
   margin: 0;
-  color: #111;
+  color: #ffffff;
 }
 
 .current-product-description {
