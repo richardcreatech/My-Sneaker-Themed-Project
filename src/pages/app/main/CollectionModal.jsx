@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { API_BASE_URL } from "../../../config/api";
 
 const MAX_IMAGES = 6;
 
@@ -7,7 +8,7 @@ function getToken() {
   return localStorage.getItem("token");
 }
 
-function CollectionModal({ apiBase, onClose, onCreated }) {
+function CollectionModal({ onClose, onCreated }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -32,7 +33,7 @@ function CollectionModal({ apiBase, onClose, onCreated }) {
 
     async function loadCategories() {
       try {
-        const res = await fetch(`${apiBase}/categories`);
+        const res = await fetch(`${API_BASE_URL}/categories`);
         if (!res.ok) throw new Error("Failed to load categories");
         const data = await res.json();
         if (!cancelled) setCategories(data.categories ?? data);
@@ -47,7 +48,7 @@ function CollectionModal({ apiBase, onClose, onCreated }) {
     return () => {
       cancelled = true;
     };
-  }, [apiBase]);
+  }, []);
 
   useEffect(() => {
     // Revoke object URLs on unmount to avoid leaking memory.
@@ -103,7 +104,7 @@ function CollectionModal({ apiBase, onClose, onCreated }) {
     setFormError(null);
 
     try {
-      const res = await fetch(`${apiBase}/categories`, {
+      const res = await fetch(`${API_BASE_URL}/categories`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -156,7 +157,7 @@ function CollectionModal({ apiBase, onClose, onCreated }) {
       body.append("category_id", categoryId);
       images.forEach((img) => body.append("images", img.file));
 
-      const res = await fetch(`${apiBase}/products`, {
+      const res = await fetch(`${API_BASE_URL}/products`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${getToken()}`,

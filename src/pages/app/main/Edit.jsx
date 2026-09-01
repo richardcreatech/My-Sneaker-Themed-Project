@@ -1,8 +1,6 @@
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import CollectionModal from "./CollectionModal";
-
-// Adjust to wherever your API actually lives.
-const API_BASE = "http://localhost:5000";
+import { API_BASE_URL } from "../../../config/api";
 
 function Edit() {
   const [collections, setCollections] = useState([]);
@@ -15,7 +13,7 @@ function Edit() {
     setLoadError(null);
 
     try {
-      const res = await fetch(`${API_BASE}/getproducts`);
+      const res = await fetch(`${API_BASE_URL}/getproducts`);
       if (!res.ok) throw new Error("Request failed");
 
       const data = await res.json();
@@ -152,7 +150,6 @@ function Edit() {
 
       {modalOpen && (
         <CollectionModal
-          apiBase={API_BASE}
           onClose={() => setModalOpen(false)}
           onCreated={handleCreated}
         />
