@@ -1,6 +1,8 @@
 import { useRef } from "react";
+import { useNavigate } from "react-router";
 
 function Explore() {
+  const navigate = useNavigate();
   const layer2Ref = useRef(null);
   const isDown = useRef(false);
   const startX = useRef(0);
@@ -39,7 +41,9 @@ function Explore() {
             We like our style fast and our looks lethal. Wrap your feet in
             something unforgettable.
           </p>
-          <button id="explore_me_btn">Explore Platform</button>
+          <button id="explore_me_btn" onClick={() => navigate("/auth")}>
+            Explore Platform
+          </button>
         </section>
 
         <section id="part_2">
