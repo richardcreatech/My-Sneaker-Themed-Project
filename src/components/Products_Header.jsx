@@ -12,7 +12,7 @@ function Products_Header() {
   return (
     <div className="products-header">
       <div className="brand-logo">
-        <img src={logo} width={20} alt="" />
+        <img onClick={() => location.assign("/main")} src={logo} width={20} alt="" />
       </div>
       <div className="products-categories">
         <button className="active" onClick={() => navigate("/main")}>
